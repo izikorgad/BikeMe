@@ -9,7 +9,7 @@ export default class PageViewScreen extends Component {
       <View style={{
         flex: 1
       }}>
-        <Header headerText='Page View Screen' />
+        <Header headerText='תמונות' />
         <SwiperScreen />
       </View>
     );

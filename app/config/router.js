@@ -45,8 +45,8 @@ LenderScreen: {
   PageViewStack: {
     screen: PageViewStack,
     navigationOptions: {
-      title: 'Page View',
-      tabBarLabel: 'Page View',
+      title: 'תמונות',
+      tabBarLabel: 'תמונות',
       tabBarIcon: ({ tintColor }) => (
         <Image
           source={require('../../img/scene.png')}
@@ -58,8 +58,8 @@ LenderScreen: {
   MapScreen: {
     screen: MapScreen,
     navigationOptions: {
-      title: 'Maps',
-      tabBarLabel: 'Maps',
+      title: 'מיקום',
+      tabBarLabel: 'מיקום',
       tabBarIcon: ({ tintColor }) => (
         <Image
           source={require('../../img/map.png')}
