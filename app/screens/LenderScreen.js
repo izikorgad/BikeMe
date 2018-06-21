@@ -17,12 +17,13 @@ export default class ToDoScreen extends Component {
   }
 
   addTodo() {
-    if (this.state.newTodo !== '') {
-      var newItem = this.state.newTodo;
+    if (!!this.state.name && this.state.time) {
+      var newItem = {name: this.state.name, time: this.state.time};
       this.state.items.push(newItem);
       this.setState({
         dataSource: ds.cloneWithRows(this.state.items),
-        newTodo: ''
+        name: undefined,
+        time: undefined
       });
     }
   }
@@ -55,45 +56,54 @@ export default class ToDoScreen extends Component {
           }}
         >
           <Text style={{ fontSize: 16 }}>
-            {rowData}
+            {`${rowData.name}-${rowData.time}`}
           </Text>
         </View>
       </TouchableHighlight>
     );
   }
 
-  <render() {
-  return (
-    <View style={styles.appContainer}>
-      <Header headerText="מוכן להשאיל?" />
-      <View style={styles.inputcontainer}>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => this.setState({ newTodo: text })}
-          value={this.state.newTodo}
-          placeholder='שם'
+  render() {
+    return (
+      <View style={styles.appContainer}>
+        <Header headerText="מוכן להשאיל?" />
+        <View style={styles.inputcontainer}>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => this.setState({ name: text })}
+            value={this.state.name}
+            placeholder='שם'
+          />
+
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => this.setState({ time: text })}
+            value={this.state.time}
+            placeholder='שעות השאלה'
+            keyboardType='numeric'
+          />
+
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => this.addTodo()}
+            underlayColor='#dddddd'
+          >
+            <Text style={styles.btnText}>הוסף</Text>
+          </TouchableHighlight>
+        </View>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => this.renderRow(rowData)}
+          enableEmptySections={true}
         />
-        <TouchableHighlight
-          style={styles.button}
-          onPress={() => this.addTodo()}
-          underlayColor='#dddddd'
-        >
-          <Text style={styles.btnText}>הוסף</Text>
-        </TouchableHighlight>
-      </View>
-      <ListView
-        dataSource={this.state.dataSource}
-        renderRow={(rowData) => this.renderRow(rowData)}
-        enableEmptySections={true}
-      />
-      <View style={{ flex: 1 }}>
-        <View style={styles.footer}>
-          <Text style={{ fontSize: 16, color: 'red' }}>Click on task to delete</Text>
+        <View style={{ flex: 1 }}>
+          <View style={styles.footer}>
+            <Text style={{ fontSize: 16, color: 'red' }}>הקלק על שורה כדי למחוק</Text>
+          </View>
         </View>
       </View>
-    </View>
-  );
-}
+    );
+  }
 }
 
 const styles = {
@@ -103,14 +113,15 @@ const styles = {
   inputcontainer: {
     marginTop: 5,
     padding: 10,
-    flexDirection: 'row'
+    height: 150,
+    flexDirection: 'column'
   },
   btnText: {
     fontSize: 18,
     color: 'steelblue',
     marginTop: 6,
-    marginRight: 25,
-    marginLeft: 25
+    marginRight: 5,
+    marginLeft: 'auto'
   },
   input: {
     height: 36,
@@ -120,7 +131,8 @@ const styles = {
     fontSize: 18,
     borderWidth: 1,
     borderColor: '#CCCCCC',
-    borderRadius: 4
+    borderRadius: 4,
+    marginBottom: 5,
   },
   row: {
     flexDirection: 'row',

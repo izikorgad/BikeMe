@@ -3,7 +3,7 @@ import { createBottomTabNavigator, createStackNavigator } from 'react-navigation
 import { Image } from 'react-native';
 
 // import ProfileScreen from '../screens/ProfileScreen';
-import ToDoScreen from '../screens/ToDoScreen';
+import LenderScreen from '../screens/LenderScreen';
 import PageViewScreen from '../screens/PageViewScreen';
 import MapScreen from '../screens/MapScreen';
 
@@ -29,11 +29,11 @@ export const Tabs = createBottomTabNavigator({
 //       ),
 //     },
 //   },
-  ToDoScreen: {
-    screen: ToDoScreen,
+LenderScreen: {
+    screen: LenderScreen,
     navigationOptions: {
-      title: 'To Do List',
-      tabBarLabel: 'To Do List',
+      title: 'השאלה',
+      tabBarLabel: 'השאלה',
       tabBarIcon: ({ tintColor }) => (
         <Image
           source={require('../../img/todo.png')}
