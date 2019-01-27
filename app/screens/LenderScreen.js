@@ -66,7 +66,7 @@ export default class ToDoScreen extends Component {
   render() {
     return (
       <View style={styles.appContainer}>
-        <Header headerText="מוכן להשאיל?" />
+        <Header headerText="Bike-Me" />
         <View style={styles.inputcontainer}>
           <TextInput
             style={styles.input}
